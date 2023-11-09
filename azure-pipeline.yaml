@@ -16,7 +16,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
-    backendServiceArm: 'your-backend-service-connection'
+    backendServiceArm: 'service-connection-demo'
     backendAzureRmResourceGroupName: 'azure-rg-infra'
     backendAzureRmStorageAccountName: 'infrademostate'
     backendAzureRmContainerName: 'tstate'
