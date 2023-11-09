@@ -5,6 +5,14 @@ pool:
   vmImage: 'ubuntu-latest'
   
 steps:
+
+- script: terraform version
+
+- task: TerraformInstaller@1
+  displayName: Install Terraform 1.5.7
+  inputs:
+    terraformVersion: 1.5.7
+
 # - task: TerraformInstaller@0
 #   displayName: "Install Terraform"
 #   inputs:
