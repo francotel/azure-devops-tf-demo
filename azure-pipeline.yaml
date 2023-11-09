@@ -1,0 +1,81 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+  
+steps:
+- task: TerraformInstaller@0
+  displayName: "Install Terraform"
+  inputs:
+    terraformVersion: '1.3.9'
+    terraformDownloadLocation: 'https://releases.hashicorp.com/terraform'
+
+- script: echo "hola mundo"
+
+# - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
+#   displayName: 'Terraform : INIT'
+#   inputs:
+#     backendServiceArm: 'Jonnychipz-TFSPN'
+#     backendAzureRmResourceGroupName: 'jonnychipz-infra'
+#     backendAzureRmStorageAccountName: jonnychipztstate
+#     backendAzureRmContainerName: tstate
+#     backendAzureRmKey: '77Q4LUB5o9wRdbPYDt+0kGZP+L8Sj9E/FNXg7lZBQS5z3mLod5cyan4wA19CR1SmlqIRUFQfhuQrPVaGzNhjGw=='
+
+# - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
+#   displayName: 'Terraform : PLAN'
+#   inputs:
+#     command: plan
+#     environmentServiceNameAzureRM: 'Jonnychipz-TFSPN'
+
+# - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
+#   displayName: 'Terraform : VAL & APPLY'
+#   inputs:
+#     command: apply
+#     environmentServiceNameAzureRM: 'Jonnychipz-TFSPN'
+
+
+# trigger:
+# - main
+
+# pool:
+#   vmImage: 'ubuntu-latest'
+  
+
+# - task: TerraformInstaller@0
+#   displayName: "Install Terraform"
+#   inputs:
+#     terraformVersion: '1.3.9'
+#     terraformDownloadLocation: 'https://releases.hashicorp.com/terraform'
+
+# - task: TerraformTaskV4@4
+#   displayName: Initialize Terraform
+#   inputs:
+#     provider: 'azurerm'
+#     command: 'init'
+#     backendServiceArm: 'your-backend-service-connection'
+#     backendAzureRmResourceGroupName: 'your-rg-name'
+#     backendAzureRmStorageAccountName: 'your-stg-name'
+#     backendAzureRmContainerName: 'your-container-name'
+#     backendAzureRmKey: 'state.tfstate'
+
+# - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
+#   displayName: 'Terraform : INIT'
+#   inputs:
+#     backendServiceArm: 'Jonnychipz-TFSPN'
+#     backendAzureRmResourceGroupName: 'jonnychipz-infra'
+#     backendAzureRmStorageAccountName: jonnychipztstate
+#     backendAzureRmContainerName: tstate
+#     backendAzureRmKey: '77Q4LUB5o9wRdbPYDt+0kGZP+L8Sj9E/FNXg7lZBQS5z3mLod5cyan4wA19CR1SmlqIRUFQfhuQrPVaGzNhjGw=='
+
+# - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
+#   displayName: 'Terraform : PLAN'
+#   inputs:
+#     command: plan
+#     environmentServiceNameAzureRM: 'Jonnychipz-TFSPN'
+
+# - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV1@0
+#   displayName: 'Terraform : VAL & APPLY'
+#   inputs:
+#     command: apply
+#     environmentServiceNameAzureRM: 'Jonnychipz-TFSPN'
