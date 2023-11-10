@@ -14,13 +14,32 @@ pool:
 stages:
 - stage: prepare
   jobs:
-  - job: prepare terraform
+  - job: prepare
+    displayName: 'Prepare Terraform'
     steps:
     - script: echo Prepare Terraform
     - task: TerraformInstaller@1
       displayName: Install Terraform $(terraformVersion)
       inputs:
         terraformVersion: $(terraformVersion)
+    - task: TerraformTaskV4@4
+      displayName: 'Terraform INIT'
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'service-connection-demo'
+        backendAzureRmResourceGroupName: 'azure-rg-infra'
+        backendAzureRmStorageAccountName: 'infrademostate'
+        backendAzureRmContainerName: 'tstate'
+        backendAzureRmKey: 'terraform.state'
+    - task: TerraformTaskV4@4
+      displayName: 'Terraform VALIDATE'
+      inputs:
+        provider: 'azurerm'
+        command: 'validate'
+        # workingDirectory: '$(System.DefaultWorkingDirectory)/$(env)'
+        # commandOptions: 
+    
 
 # - stage: test
 #   dependsOn: build
