@@ -52,7 +52,7 @@ stages:
     - checkout: none
     - script: pwd
     - download: current
-      artifact: $(tfFilesArtifactName)
+      artifact: tf-files
       # path: '$(Pipeline.Workspace)'
 
     - script: ls -la
