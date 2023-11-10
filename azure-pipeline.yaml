@@ -42,6 +42,7 @@ stages:
         command: 'validate'
         # workingDirectory: '$(System.DefaultWorkingDirectory)/$(env)'
         # commandOptions: 
+    - script: ls -la
 
 - stage: plan
   dependsOn: prepare
@@ -50,13 +51,11 @@ stages:
     displayName: Terraform Plan
     steps:
     - checkout: none
-    - script: pwd
     - download: current
       artifact: tf-files
       # path: '$(Pipeline.Workspace)'
 
     - script: ls -la
-    - script: cd $(Pipeline.Workspace)
     - script: echo Plan
     - task: TerraformInstaller@1
       displayName: Install Terraform $(terraformVersion)
@@ -72,6 +71,7 @@ stages:
         backendAzureRmStorageAccountName: 'infrademostate'
         backendAzureRmContainerName: 'tstate'
         backendAzureRmKey: 'terraform.state'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/'
     - task: TerraformTaskV4@4
       displayName: Terraform PLAN
       inputs:
