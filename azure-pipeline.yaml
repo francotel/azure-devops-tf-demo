@@ -88,26 +88,22 @@ stages:
     - script: echo Apply
     - download: current
       artifact: $(tfPlanArtifactName)
-    - script: ls -la $(Pipeline.Workspace)/tf-plan/.terraform/
-    - script: ls -la $(system.defaultWorkingDirectory)
-
-    # - script: chmod +x $(Pipeline.Workspace)/tf-plan/.terraform/plugins/linux_amd64/terraform-provider-*
     - task: TerraformInstaller@1
       displayName: Install Terraform $(terraformVersion)
       inputs:
         terraformVersion: $(terraformVersion)
-    - task: TerraformTaskV4@4
-      displayName: Terraform INIT
-      inputs:
-        provider: 'azurerm'
-        command: 'init'
-        commandOptions: '-upgrade'
-        backendServiceArm: 'service-connection-demo'
-        backendAzureRmResourceGroupName: 'azure-rg-infra'
-        backendAzureRmStorageAccountName: 'infrademostate'
-        backendAzureRmContainerName: 'tstate'
-        backendAzureRmKey: 'terraform.state'
-        workingDirectory: '$(Pipeline.Workspace)/$(tfPlanArtifactName)/'
+    # - task: TerraformTaskV4@4
+    #   displayName: Terraform INIT
+    #   inputs:
+    #     provider: 'azurerm'
+    #     command: 'init'
+    #     commandOptions: '-upgrade'
+    #     backendServiceArm: 'service-connection-demo'
+    #     backendAzureRmResourceGroupName: 'azure-rg-infra'
+    #     backendAzureRmStorageAccountName: 'infrademostate'
+    #     backendAzureRmContainerName: 'tstate'
+    #     backendAzureRmKey: 'terraform.state'
+    #     workingDirectory: '$(Pipeline.Workspace)/$(tfPlanArtifactName)/'
     - script: ls -la $(Pipeline.Workspace)/tf-plan
     - script: ls -la $(system.defaultWorkingDirectory)
 
