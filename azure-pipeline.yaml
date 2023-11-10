@@ -40,35 +40,35 @@ stages:
         # workingDirectory: '$(System.DefaultWorkingDirectory)/$(env)'
         # commandOptions: 
 
-  - stage: plan
-    dependsOn: prepare
-    jobs:
-    - job: plan
-      displayName: Terraform Plan
-      steps:
-      - script: echo Plan
-      - task: TerraformInstaller@1
-        displayName: Install Terraform $(terraformVersion)
-        inputs:
-          terraformVersion: $(terraformVersion)
-      - task: TerraformTaskV4@4
-        displayName: Terraform INIT
-        inputs:
-          provider: 'azurerm'
-          command: 'init'
-          backendServiceArm: 'service-connection-demo'
-          backendAzureRmResourceGroupName: 'azure-rg-infra'
-          backendAzureRmStorageAccountName: 'infrademostate'
-          backendAzureRmContainerName: 'tstate'
-          backendAzureRmKey: 'terraform.state'
-      - task: TerraformTaskV4@4
-        displayName: Terraform PLAN
-        inputs:
-          provider: 'azurerm'
-          command: 'plan'
-          commandOptions: '-out main.tfplan'
-          environmentServiceNameAzureRM: 'service-connection-demo'
-          
+- stage: plan
+  dependsOn: prepare
+  jobs:
+  - job: plan
+    displayName: Terraform Plan
+    steps:
+    - script: echo Plan
+    - task: TerraformInstaller@1
+      displayName: Install Terraform $(terraformVersion)
+      inputs:
+        terraformVersion: $(terraformVersion)
+    - task: TerraformTaskV4@4
+      displayName: Terraform INIT
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'service-connection-demo'
+        backendAzureRmResourceGroupName: 'azure-rg-infra'
+        backendAzureRmStorageAccountName: 'infrademostate'
+        backendAzureRmContainerName: 'tstate'
+        backendAzureRmKey: 'terraform.state'
+    - task: TerraformTaskV4@4
+      displayName: Terraform PLAN
+      inputs:
+        provider: 'azurerm'
+        command: 'plan'
+        commandOptions: '-out main.tfplan'
+        environmentServiceNameAzureRM: 'service-connection-demo'
+        
 # - stage: staging
 #   dependsOn: test
 #   jobs:
