@@ -6,6 +6,7 @@ trigger:
 variables:
   terraformVersion: 1.6.2
   tfFilesArtifactName: 'tf-files'
+  tfPlanArtifactName: 'tf-plan'
   # skipComponentGovernanceDetection: true
   
 pool:
@@ -46,6 +47,7 @@ stages:
   - job: plan
     displayName: Terraform Plan
     steps:
+    - checkout: none
     - script: echo Plan
     - task: TerraformInstaller@1
       displayName: Install Terraform $(terraformVersion)
@@ -68,13 +70,18 @@ stages:
         command: 'plan'
         commandOptions: '-out main.tfplan'
         environmentServiceNameAzureRM: 'service-connection-demo'
+    - publish: '$(pipeline.workspace)/$(tfFilesArtifactName)'
+      artifact: $(tfPlanArtifactName)
         
 - stage: apply
   dependsOn: plan
   jobs:
   - job: apply
     steps:
+    - checkout: none
     - script: echo Apply
+    - download: current
+      artifact: $(tfPlanArtifactName)
     - script: ls -la
 
 # - stage: prod
