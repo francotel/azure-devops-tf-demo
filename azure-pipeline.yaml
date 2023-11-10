@@ -51,11 +51,7 @@ stages:
     displayName: Terraform Plan
     steps:
     - checkout: none
-    # - task: DownloadPipelineArtifact@2
-    #   inputs:
-    #     artifact: tf-files
     - download: current 
-    - script: ls $(Pipeline.Workspace)
     - script: echo Plan
     - task: TerraformInstaller@1
       displayName: Install Terraform $(terraformVersion)
@@ -92,7 +88,7 @@ stages:
     - script: echo Apply
     - download: current
       artifact: $(tfPlanArtifactName)
-    - script: ls -la
+    - script: ls -la $(Pipeline.Workspace)
 
 # - stage: prod
 #   dependsOn: staging
