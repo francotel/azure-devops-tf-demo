@@ -54,7 +54,7 @@ stages:
     - task: DownloadPipelineArtifact@2
       inputs:
         artifact: tf-files
-    # - download: current 
+    - download: current 
     - script: ls $(Pipeline.Workspace)
     - script: echo Plan
     - task: TerraformInstaller@1
