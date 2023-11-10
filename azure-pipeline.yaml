@@ -58,10 +58,9 @@ stages:
     displayName: Terraform Plan
     steps:
     - checkout: none
-    # - task: DownloadPipelineArtifact@2
-    #   inputs:
-    #     artifact: tf-files
-    - download: current 
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        artifact: ${tfFilesArtifactName}
     - script: ls $(Pipeline.Workspace)
     - script: echo Plan
     - task: TerraformInstaller@1
