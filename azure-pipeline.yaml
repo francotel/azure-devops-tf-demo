@@ -17,14 +17,10 @@ stages:
   - job: prepare
     displayName: 'Prepare Terraform'
     steps:
-    - task: CopyFiles@2
-      inputs:
-        contents: '*'
-        targetFolder: '$(Build.ArtifactStagingDirectory)'
-    # - task: PublishPipelineArtifact@1
+    # - task: CopyFiles@2
     #   inputs:
-    #     targetPath: $(Build.ArtifactStagingDirectory)/
-    #     artifactName: $(tfFilesArtifactName)
+    #     contents: '*'
+    #     targetFolder: '$(Build.ArtifactStagingDirectory)'
     - publish: '$(system.defaultWorkingDirectory)/'
       artifact: $(tfFilesArtifactName)
     - script: echo Prepare Terraform
