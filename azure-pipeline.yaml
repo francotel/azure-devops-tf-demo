@@ -87,7 +87,8 @@ stages:
     - checkout: none
     - script: echo Apply
     - download: current
-      artifact: $(tfPlanArtifactName)
+      # artifact: $(tfPlanArtifactName)
+    - script: ls -la $(Pipeline.Workspace)/
     - script: rm -f $(Pipeline.Workspace)/tf-plan/.terraform.lock.hcl
 
     - task: TerraformInstaller@1
