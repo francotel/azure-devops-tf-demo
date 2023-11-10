@@ -94,6 +94,17 @@ stages:
       inputs:
         terraformVersion: $(terraformVersion)
     - task: TerraformTaskV4@4
+      displayName: Terraform INIT
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'service-connection-demo'
+        backendAzureRmResourceGroupName: 'azure-rg-infra'
+        backendAzureRmStorageAccountName: 'infrademostate'
+        backendAzureRmContainerName: 'tstate'
+        backendAzureRmKey: 'terraform.state'
+        workingDirectory: '$(Pipeline.Workspace)/$(tfPlanArtifactName)/'
+    - task: TerraformTaskV4@4
       displayName: Apply Terraform Plan
       inputs:
         provider: 'azurerm'
