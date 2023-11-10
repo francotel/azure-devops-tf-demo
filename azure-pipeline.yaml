@@ -99,6 +99,7 @@ stages:
         provider: 'azurerm'
         command: 'apply'
         commandOptions: 'main.tfplan'
+        workingDirectory: '$(Pipeline.Workspace)/$(tfFilesArtifactName)/'
         environmentServiceNameAzureRM: 'service-connection-demo'
 
 # - stage: prod
