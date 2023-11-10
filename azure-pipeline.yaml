@@ -18,6 +18,8 @@ stages:
   - job: prepare
     displayName: 'Prepare Terraform'
     steps:
+    - publish: '$(system.defaultWorkingDirectory)/tf'
+      artifact: $(tfFilesArtifactName)
     - script: echo Prepare Terraform
     - task: TerraformInstaller@1
       displayName: Install Terraform $(terraformVersion)
@@ -48,6 +50,8 @@ stages:
     displayName: Terraform Plan
     steps:
     - checkout: none
+    - download: current
+      artifact: $(tfFilesArtifactName)
     - script: echo Plan
     - task: TerraformInstaller@1
       displayName: Install Terraform $(terraformVersion)
