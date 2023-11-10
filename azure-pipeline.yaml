@@ -76,6 +76,14 @@ stages:
         commandOptions: '-out main.tfplan'
         workingDirectory: '$(Pipeline.Workspace)/$(tfFilesArtifactName)/'
         environmentServiceNameAzureRM: 'service-connection-demo'
+    - task: TerraformTaskV4@4
+      displayName: Apply Terraform Plan
+      inputs:
+        provider: 'azurerm'
+        command: 'apply'
+        commandOptions: 'main.tfplan'
+        workingDirectory: '$(Pipeline.Workspace)/$(tfFilesArtifactName)/'
+        environmentServiceNameAzureRM: 'service-connection-demo'
     - publish: '$(pipeline.workspace)/$(tfFilesArtifactName)'
       artifact: $(tfPlanArtifactName)
         
@@ -116,4 +124,4 @@ stages:
         command: 'apply'
         commandOptions: 'main.tfplan'
         workingDirectory: '$(Pipeline.Workspace)/$(tfPlanArtifactName)/'
-        # environmentServiceNameAzureRM: 'service-connection-demo'
+        environmentServiceNameAzureRM: 'service-connection-demo'
