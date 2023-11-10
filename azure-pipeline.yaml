@@ -83,7 +83,7 @@ stages:
         backendAzureRmStorageAccountName: 'infrademostate'
         backendAzureRmContainerName: 'tstate'
         backendAzureRmKey: 'terraform.state'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/'
+        workingDirectory: '$(Pipeline.Workspace)/tf-files/'
     - task: TerraformTaskV4@4
       displayName: Terraform PLAN
       inputs:
