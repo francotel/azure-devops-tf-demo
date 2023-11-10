@@ -54,6 +54,7 @@ stages:
     - download: current
       artifact: $(tfFilesArtifactName)
     - script: ls -la
+    - scripts: cd $(Pipeline.Workspace)
     - script: echo Plan
     - task: TerraformInstaller@1
       displayName: Install Terraform $(terraformVersion)
