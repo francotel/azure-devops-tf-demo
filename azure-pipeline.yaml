@@ -32,6 +32,17 @@ stages:
         backendAzureRmStorageAccountName: 'infrademostate'
         backendAzureRmContainerName: 'tstate'
         backendAzureRmKey: 'terraform.state'
+  - job: 'plan'
+    displayName: 'plan'
+    steps:
+    - task: TerraformTaskV4@4
+      name: terraformPlan
+      displayName: Create Terraform Plan
+      inputs:
+        provider: 'azurerm'
+        command: 'plan'
+        commandOptions: '-out main.tfplan'
+        environmentServiceNameAzureRM: 'service-connection-demo'
     # - script: |
     #     terraform init \
     #         -backend=false
