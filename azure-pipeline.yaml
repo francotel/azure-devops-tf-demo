@@ -91,7 +91,7 @@ stages:
     - script: ls -la $(Pipeline.Workspace)/tf-plan/.terraform/
     - script: ls -la $(system.defaultWorkingDirectory)
 
-    - script: chmod +x $(Pipeline.Workspace)/tf-plan/.terraform/plugins/linux_amd64/terraform-provider-*
+    # - script: chmod +x $(Pipeline.Workspace)/tf-plan/.terraform/plugins/linux_amd64/terraform-provider-*
     - task: TerraformInstaller@1
       displayName: Install Terraform $(terraformVersion)
       inputs:
