@@ -92,18 +92,18 @@ stages:
       displayName: Install Terraform $(terraformVersion)
       inputs:
         terraformVersion: $(terraformVersion)
-    # - task: TerraformTaskV4@4
-    #   displayName: Terraform INIT
-    #   inputs:
-    #     provider: 'azurerm'
-    #     command: 'init'
-    #     commandOptions: '-upgrade'
-    #     backendServiceArm: 'service-connection-demo'
-    #     backendAzureRmResourceGroupName: 'azure-rg-infra'
-    #     backendAzureRmStorageAccountName: 'infrademostate'
-    #     backendAzureRmContainerName: 'tstate'
-    #     backendAzureRmKey: 'terraform.state'
-    #     workingDirectory: '$(Pipeline.Workspace)/$(tfPlanArtifactName)/'
+    - task: TerraformTaskV4@4
+      displayName: Terraform INIT
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        commandOptions: '-upgrade'
+        backendServiceArm: 'service-connection-demo'
+        backendAzureRmResourceGroupName: 'azure-rg-infra'
+        backendAzureRmStorageAccountName: 'infrademostate'
+        backendAzureRmContainerName: 'tstate'
+        backendAzureRmKey: 'terraform.state'
+        workingDirectory: '$(Pipeline.Workspace)/$(tfPlanArtifactName)/'
     - script: ls -la $(Pipeline.Workspace)/tf-plan
     - script: rm -f $(Pipeline.Workspace)/tf-plan/.terraform.lock.hcl
 
