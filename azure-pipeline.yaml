@@ -109,6 +109,8 @@ stages:
         backendAzureRmKey: 'terraform.state'
         workingDirectory: '$(Pipeline.Workspace)/$(tfPlanArtifactName)/'
     - script: ls -la $(Pipeline.Workspace)/tf-plan
+    - script: ls -la $(system.defaultWorkingDirectory)
+
     - task: TerraformTaskV4@4
       displayName: Apply Terraform Plan
       inputs:
