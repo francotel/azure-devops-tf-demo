@@ -11,15 +11,12 @@ variables:
 pool:
  vmImage: 'ubuntu-latest'
 
-
-
-
 stages:
 - stage: build
   jobs:
   - job: run_build
-    pool:
-      vmImage: 'Ubuntu 16.04'
+    # pool:
+    #   vmImage: 'ubuntu-latest'
     steps:
     - script: echo Build
 
@@ -27,8 +24,8 @@ stages:
   dependsOn: build
   jobs:
   - job: run_tests
-    pool:
-      vmImage: 'Ubuntu 16.04'
+    # pool:
+    #   vmImage: 'Ubuntu 16.04'
     steps:
     - script: echo Test
     
@@ -36,8 +33,8 @@ stages:
   dependsOn: test
   jobs:
   - job: deploy_staging
-    pool:
-      vmImage: 'Ubuntu 16.04'
+    # pool:
+    #   vmImage: 'Ubuntu 16.04'
     steps:
     - script: echo Staging
 
@@ -45,8 +42,8 @@ stages:
   dependsOn: staging
   jobs:
   - job: deploy_prod
-    pool:
-      vmImage: 'Ubuntu 16.04'
+    # pool:
+    #   vmImage: 'Ubuntu 16.04'
     steps:
     - script: echo Prod
 
