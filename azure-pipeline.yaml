@@ -88,6 +88,8 @@ stages:
     - script: echo Apply
     - download: current
       artifact: $(tfPlanArtifactName)
+    - script: rm -f $(Pipeline.Workspace)/tf-plan/.terraform.lock.hcl
+
     - task: TerraformInstaller@1
       displayName: Install Terraform $(terraformVersion)
       inputs:
@@ -105,7 +107,6 @@ stages:
         backendAzureRmKey: 'terraform.state'
         workingDirectory: '$(Pipeline.Workspace)/$(tfPlanArtifactName)/'
     - script: ls -la $(Pipeline.Workspace)/tf-plan
-    - script: rm -f $(Pipeline.Workspace)/tf-plan/.terraform.lock.hcl
 
     - task: TerraformTaskV4@4
       displayName: Apply Terraform Plan
