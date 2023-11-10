@@ -52,6 +52,7 @@ stages:
     - checkout: none
     - download: current
       artifact: $(tfFilesArtifactName)
+    - script: ls -la
     - script: echo Plan
     - task: TerraformInstaller@1
       displayName: Install Terraform $(terraformVersion)
