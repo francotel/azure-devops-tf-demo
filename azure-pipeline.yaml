@@ -53,7 +53,7 @@ stages:
     - script: pwd
     - download: current
       artifact: $(tfFilesArtifactName)
-      path: '$(Pipeline.Workspace)'
+      # path: '$(Pipeline.Workspace)'
 
     - script: ls -la
     - script: cd $(Pipeline.Workspace)
