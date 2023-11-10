@@ -86,7 +86,7 @@ stages:
         provider: 'azurerm'
         command: 'plan'
         commandOptions: '-out main.tfplan'
-        workingDirectory: '$(Pipeline.Workspace)/${tfFilesArtifactName}/'
+        workingDirectory: '$(Pipeline.Workspace)/$(tfFilesArtifactName)/'
         environmentServiceNameAzureRM: 'service-connection-demo'
     - publish: '$(pipeline.workspace)/$(tfFilesArtifactName)'
       artifact: $(tfPlanArtifactName)
