@@ -69,12 +69,13 @@ stages:
         commandOptions: '-out main.tfplan'
         environmentServiceNameAzureRM: 'service-connection-demo'
         
-# - stage: staging
-#   dependsOn: test
-#   jobs:
-#   - job: deploy_staging
-#     steps:
-#     - script: echo Staging
+- stage: apply
+  dependsOn: plan
+  jobs:
+  - job: apply
+    steps:
+    - script: echo Apply
+    - script: ls -la
 
 # - stage: prod
 #   dependsOn: staging
