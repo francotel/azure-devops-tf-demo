@@ -88,7 +88,7 @@ stages:
     - script: echo Apply
     - download: current
       artifact: $(tfPlanArtifactName)
-    - script: ls -la $(Pipeline.Workspace)
+    - script: ls -la $(Pipeline.Workspace)/tf-plan/.terraform/
 
     - script: chmod +x $(Pipeline.Workspace)/tf-plan/.terraform/plugins/linux_amd64/terraform-provider-*
     - task: TerraformInstaller@1
