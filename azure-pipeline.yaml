@@ -43,9 +43,6 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'validate'
-        # workingDirectory: '$(System.DefaultWorkingDirectory)/$(env)'
-        # commandOptions: 
-    - script: ls -la
 
 - stage: plan
   dependsOn: prepare
@@ -57,8 +54,7 @@ stages:
     - task: DownloadPipelineArtifact@2
       inputs:
         artifact: tf-files
-        # path: '$(Pipeline.Workspace)'
-    - download: current 
+    # - download: current 
     - script: ls $(Pipeline.Workspace)
     - script: echo Plan
     - task: TerraformInstaller@1
