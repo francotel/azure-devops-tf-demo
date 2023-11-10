@@ -1,17 +1,8 @@
 trigger:
 - main
 
-pool:
-  vmImage: 'ubuntu-latest'
-
-trigger:
-  batch: true
-  branches:
-    include:
-    - '*'
-
 variables:
-  terraformVersion: 0.12.26
+  terraformVersion: 1.6.2
   tfFilesArtifactName: 'tf-files'
   # skipComponentGovernanceDetection: true
   
