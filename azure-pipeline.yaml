@@ -18,8 +18,12 @@ stages:
   - job: prepare
     displayName: 'Prepare Terraform'
     steps:
-    - publish: '$(system.defaultWorkingDirectory)/'
-      artifact: $(tfFilesArtifactName)
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: $(System.DefaultWorkingDirectory)/bin/WebApp
+        artifactName: $(tfFilesArtifactName)
+    # - publish: '$(system.defaultWorkingDirectory)/'
+    #   artifact: $(tfFilesArtifactName)
     - script: echo Prepare Terraform
     - task: TerraformInstaller@1
       displayName: Install Terraform $(terraformVersion)
