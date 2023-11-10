@@ -22,12 +22,12 @@ stages:
       inputs:
         contents: '*'
         targetFolder: '$(Build.ArtifactStagingDirectory)'
-    - task: PublishPipelineArtifact@1
-      inputs:
-        targetPath: $(Build.ArtifactStagingDirectory)/
-        artifactName: $(tfFilesArtifactName)
-    # - publish: '$(system.defaultWorkingDirectory)/'
-    #   artifact: $(tfFilesArtifactName)
+    # - task: PublishPipelineArtifact@1
+    #   inputs:
+    #     targetPath: $(Build.ArtifactStagingDirectory)/
+    #     artifactName: $(tfFilesArtifactName)
+    - publish: '$(system.defaultWorkingDirectory)/'
+      artifact: $(tfFilesArtifactName)
     - script: echo Prepare Terraform
     - task: TerraformInstaller@1
       displayName: Install Terraform $(terraformVersion)
@@ -63,6 +63,9 @@ stages:
       inputs:
         artifact: tf-files
         # path: '$(Pipeline.Workspace)'
+    - download: current 
+    - script: ls $(Pipeline.Workspace)
+
 
     - script: ls -la
     - script: echo Plan
