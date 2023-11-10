@@ -55,7 +55,8 @@ stages:
     displayName: Terraform Plan
     steps:
     - checkout: none
-    - download: current
+  - task: DownloadPipelineArtifact@2
+    inputs:
       artifact: tf-files
       # path: '$(Pipeline.Workspace)'
 
